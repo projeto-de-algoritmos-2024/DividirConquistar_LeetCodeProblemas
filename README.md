@@ -1,27 +1,13 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# LeetCodeProblemas
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 20<br>
+**Conteúdo da Disciplina**: Dividir e Conquistar (D&C)<br>
 
 ## Alunos
-|Matrícula | Aluno |
-| -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| Matrícula  | Aluno                             |
+| ---------- | --------------------------------- |
+| 22/1021886 | Cássio Sousa dos Reis             |
+| 22/1008024 | Eduardo Matheus dos Santos Sandes |
 
 ## Sobre 
 Descreva os objetivos do seu projeto e como ele funciona. 
@@ -39,7 +25,4 @@ Explique como usar seu projeto caso haja algum passo a passo após o comando de 
 
 ## Outros 
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
 
