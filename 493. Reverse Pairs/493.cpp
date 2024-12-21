@@ -3,54 +3,52 @@ using namespace std;
 
 class Solution {
 public:
+    int mergeAndCount(vector<int>& nums, int l, int m, int r) {
+        int qtdInversoes = 0;
+        int i = l, j = m + 1, k = 0;
 
-    pair<int, vector<int>> mergeAndCount(vector<int>& numsA, vector<int>& numsB) {
-        int i = 0, j = 0, inversoes = 0;
-        vector<int> merged;
-
-        for (int i = 0; i < numsA.size(); i++) {
-            while (j < numsB.size() && numsA[i] > 2LL * numsB[j]) {
+        for (int i = l; i <= m; i++) {
+            while (j <= r && nums[i] > 2LL * nums[j]) {
                 j++;
             }
-            inversoes += j;
+            qtdInversoes += j - (m + 1);
         }
-        
-        i = 0, j = 0;
-        while (i < numsA.size() && j < numsB.size()) {
-            if (numsA[i] <= numsB[j]) {
-                merged.push_back(numsA[i++]);
+
+        vector<int> aux(r - l + 1);
+        i = l, j = m + 1;
+
+        while (i <= m && j <= r) {
+            if (nums[i] <= nums[j]) {
+                aux[k++] = nums[i++];
             } else {
-                merged.push_back(numsB[j++]);
+                aux[k++] = nums[j++];
             }
         }
 
-        while (i < numsA.size()) merged.push_back(numsA[i++]);
-        while (j < numsB.size()) merged.push_back(numsB[j++]);
+        while (i <= m) aux[k++] = nums[i++];
+        while (j <= r) aux[k++] = nums[j++];
 
-    return {inversoes, merged};
-    }
-
-    pair<int, vector<int>> sortAndCount(vector<int>& nums) {
-
-        if (nums.size() <= 1) {
-            return {0, nums};
+        for (i = l, k = 0; i <= r; i++, k++) {
+            nums[i] = aux[k];
         }
 
-        int mid = nums.size() / 2;
+        return qtdInversoes;
+    }
 
-        vector<int> A(nums.begin(), nums.begin() + mid);
-        vector<int> B(nums.begin() + mid, nums.end());
+    int sortAndCount(vector<int>& nums, int l, int r) {
+        if (l >= r) return 0;
 
-        auto [ra, sortedA] = sortAndCount(A);
-        auto [rb, sortedB] = sortAndCount(B);
-        auto [r, sortedNums] = mergeAndCount(sortedA, sortedB);
+        int m = l + (r - l) / 2;
+        int count = 0;
 
-        return {ra + rb + r, sortedNums};
+        count += sortAndCount(nums, l, m);
+        count += sortAndCount(nums, m + 1, r);
+        count += mergeAndCount(nums, l, m, r);
+
+        return count;
     }
 
     int reversePairs(vector<int>& nums) {
-        auto [inversoes, sorted] = sortAndCount(nums);
-
-        return inversoes;
+        return sortAndCount(nums, 0, nums.size() - 1);
     }
 };
